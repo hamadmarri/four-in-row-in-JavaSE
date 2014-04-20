@@ -2,7 +2,7 @@ four-in-row-in-JavaSE
 =====================
 
 This project is a four in row game that has been written in Java
-The algorithm that I used is min-max algorithm after that I have added alpha-beta functionality to reduce the number of node generated.
+The algorithm that I used is min-max algorithm after that I have added alpha-beta functionality to reduce the number of nodes generated.
 
 In this project the user able to set the depth since the algorithm uses depth-first search.
 
