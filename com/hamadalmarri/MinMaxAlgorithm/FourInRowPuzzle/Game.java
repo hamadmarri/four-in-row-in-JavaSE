@@ -6,7 +6,6 @@ import com.hamadalmarri.MinMaxAlgorithm.FourInRowPuzzle.FourInRowPuzzle.FullColu
 import com.hamadalmarri.MinMaxAlgorithm.Graph.Graph;
 import com.hamadalmarri.MinMaxAlgorithm.Graph.GraphNode;
 
-
 class SPECIAL_VALUES {
 	public static final short WIN_VALUE = 32767;
 	public static final short LOSS_VALUE = -32767;
@@ -25,7 +24,7 @@ public final class Game {
 	private FourInRowPuzzle aPuzzle;
 
 	// maximum depth for DFS
-	private short maxDepth;
+	private byte maxDepth;
 
 	// graph ADT
 	private Graph aGraph;
@@ -36,10 +35,14 @@ public final class Game {
 	// stack
 	private ArrayDeque<GraphNode> aStack = new ArrayDeque<GraphNode>();
 
+
+
 	public Game() {
 		// default is 5
 		this.maxDepth = 5;
 	}
+
+
 
 	// SetPuzzle to be solved
 	public void SetPuzzle(FourInRowPuzzle aPuzzle) {
@@ -47,10 +50,14 @@ public final class Game {
 		this.originalPuzzle = new FourInRowPuzzle(aPuzzle);
 	}
 
+
+
 	// setting the max depth for DFS
-	public void SetMaxDepth(short maxDepth) {
+	public void SetMaxDepth(byte maxDepth) {
 		this.maxDepth = maxDepth;
 	}
+
+
 
 	// get the next suggested play
 	public short GetNextPlay() throws FullColumn {
@@ -61,6 +68,8 @@ public final class Game {
 		// call DepthFirstSearch function
 		return DepthFirstSearch();
 	}
+
+
 
 	// the depth first search algorithm
 	private short DepthFirstSearch() throws FullColumn {
@@ -82,9 +91,7 @@ public final class Game {
 
 			// if it has no children and
 			// not reach the maxDepth and not full, then develop children
-			if (this.aGraphNode.edges.isEmpty()
-					&& this.aGraphNode.depth < maxDepth
-					&& !this.aPuzzle.isFull()) {
+			if (this.aGraphNode.edges.isEmpty() && this.aGraphNode.depth < maxDepth && !this.aPuzzle.isFull()) {
 
 				// apply the move of this current aGraphNode
 				ApplyMove();
@@ -111,8 +118,7 @@ public final class Game {
 
 			// else if it has no children and
 			// reach the maxDepth (i.e. leaf node), then calculate minMaxValue
-			else if (this.aGraphNode.edges.isEmpty()
-					&& this.aGraphNode.depth >= maxDepth) {
+			else if (this.aGraphNode.edges.isEmpty() && this.aGraphNode.depth >= maxDepth) {
 
 				// apply the move of this current aGraphNode
 				ApplyMove();
@@ -127,8 +133,7 @@ public final class Game {
 			}
 
 			// else if it has children and Depth is even, get Max child value
-			else if (!this.aGraphNode.edges.isEmpty()
-					&& (this.aGraphNode.depth % 2) == 0) {
+			else if (!this.aGraphNode.edges.isEmpty() && (this.aGraphNode.depth % 2) == 0) {
 
 				// get Max child value
 				this.aGraphNode.minMaxValue = GetMaxChildValue(this.aGraphNode);
@@ -137,8 +142,7 @@ public final class Game {
 			}
 
 			// else if it has children and Depth is odd, get Min child value
-			else if (!this.aGraphNode.edges.isEmpty()
-					&& (this.aGraphNode.depth % 2) == 1) {
+			else if (!this.aGraphNode.edges.isEmpty() && (this.aGraphNode.depth % 2) == 1) {
 
 				// get Min child value
 				this.aGraphNode.minMaxValue = GetMinChildValue(this.aGraphNode);
@@ -158,20 +162,22 @@ public final class Game {
 		return this.aGraphNode.tokenPosition;
 	}
 
+
+
 	// apply move
 	private void ApplyMove() throws FullColumn {
 		// check if valid play has been played
 		if (this.aGraphNode.tokenPosition < 7) {
 			// check if player1 has been played
 			if ((this.aGraphNode.depth % 2) == 1)
-				this.aPuzzle.addToken(PLAYERS.PLAYER1,
-						this.aGraphNode.tokenPosition);
+				this.aPuzzle.addToken(PLAYERS.PLAYER1, this.aGraphNode.tokenPosition);
 			// or player2
 			else
-				this.aPuzzle.addToken(PLAYERS.PLAYER2,
-						this.aGraphNode.tokenPosition);
+				this.aPuzzle.addToken(PLAYERS.PLAYER2, this.aGraphNode.tokenPosition);
 		}
 	}
+
+
 
 	// revert back the move
 	private void RevertBackMove() {
@@ -180,6 +186,8 @@ public final class Game {
 			this.aPuzzle.removeToken(this.aGraphNode.tokenPosition);
 
 	}
+
+
 
 	/*
 	 * private void GetTopFromStackAndApplyMove() throws FullColumn { // get the
@@ -196,6 +204,8 @@ public final class Game {
 		this.aStack.pop();
 	}
 
+
+
 	// is need to develop children based on Alpha-Beta check
 	private boolean IsNeedToDevelopChildren() {
 		short max = SPECIAL_VALUES.NOT_ASSIGNED;
@@ -203,8 +213,7 @@ public final class Game {
 
 		// check if parent or parents' parent are NULLS, then return true need
 		// to develop children
-		if (this.aGraphNode.parent == null
-				|| this.aGraphNode.parent.parent == null) {
+		if (this.aGraphNode.parent == null || this.aGraphNode.parent.parent == null) {
 			return true;
 		}
 
@@ -227,13 +236,14 @@ public final class Game {
 
 		// if max or min still not assigned, then return true need to develop
 		// children
-		if (max == SPECIAL_VALUES.NOT_ASSIGNED
-				|| min == SPECIAL_VALUES.NOT_ASSIGNED)
+		if (max == SPECIAL_VALUES.NOT_ASSIGNED || min == SPECIAL_VALUES.NOT_ASSIGNED)
 			return true;
 
 		// return false if max is greater than min
 		return !(max > min);
 	}
+
+
 
 	// develop children
 	private void DevelopChildren() {
@@ -253,7 +263,7 @@ public final class Game {
 
 				// add it to graph
 				this.aGraph.addGraphNode(graphNodeChild);
-				
+
 				// add it to the parent edges
 				this.aGraph.addEdge(this.aGraphNode, graphNodeChild);
 
@@ -264,18 +274,21 @@ public final class Game {
 
 	}
 
+
+
 	private short GetMaxChildValue(GraphNode aGraphNode) {
 		short max = SPECIAL_VALUES.NOT_ASSIGNED;
 
 		for (GraphNode g : aGraphNode.edges) {
-			if (g.minMaxValue != SPECIAL_VALUES.NOT_ASSIGNED
-					&& g.minMaxValue > max) {
+			if (g.minMaxValue != SPECIAL_VALUES.NOT_ASSIGNED && g.minMaxValue > max) {
 				max = g.minMaxValue;
 			}
 		}
 
 		return max;
 	}
+
+
 
 	private short GetMinChildValue(GraphNode aGraphNode) {
 		short min = SPECIAL_VALUES.NOT_ASSIGNED;
@@ -289,6 +302,8 @@ public final class Game {
 
 		return min;
 	}
+
+
 
 	// calculate minMaxValue for leaf nodes
 	private void CalculateMinMaxValue() {
@@ -307,10 +322,14 @@ public final class Game {
 			this.aGraphNode.minMaxValue = (short) (CountSequentials() + CountCenterColumn());
 	}
 
+
+
 	// count up the sequentials in the game
 	private short CountSequentials() {
 		return (short) (CountSequentials(PLAYERS.PLAYER1) - CountSequentials(PLAYERS.PLAYER2));
 	}
+
+
 
 	// CountSequentials Helper function
 	private short CountSequentials(PUZZLE_HOLE_COLORS color) {
@@ -333,15 +352,12 @@ public final class Game {
 						result += 2;
 
 					// check diagonally Up-Left
-					if (column > 0
-							&& this.aPuzzle.holes[row + 1][column - 1]
-									.getColor() == color)
+					if (column > 0 && this.aPuzzle.holes[row + 1][column - 1].getColor() == color)
 						result += 2;
 
 					// check diagonally Up-Right
 					if (column < FourInRowPuzzle.getWidth() - 1
-							&& this.aPuzzle.holes[row + 1][column + 1]
-									.getColor() == color)
+							&& this.aPuzzle.holes[row + 1][column + 1].getColor() == color)
 						result += 2;
 				} // if
 			} // for column
@@ -350,13 +366,14 @@ public final class Game {
 		return result;
 	}
 
+
+
 	private short CountCenterColumn() {
 		short result = 0;
 
 		// go through all holes in center column
 		for (byte row = 0; row < FourInRowPuzzle.getHieght() - 1; row++) {
-			if (this.originalPuzzle.holes[row][3].isEmpty()
-					&& this.aPuzzle.holes[row][3].getColor() == PLAYERS.PLAYER1)
+			if (this.originalPuzzle.holes[row][3].isEmpty() && this.aPuzzle.holes[row][3].getColor() == PLAYERS.PLAYER1)
 				result += 10;
 			else if (this.originalPuzzle.holes[row][3].isEmpty()
 					&& this.aPuzzle.holes[row][3].getColor() == PLAYERS.PLAYER2)
@@ -365,6 +382,8 @@ public final class Game {
 
 		return result;
 	}
+
+
 
 	// get how many graph nodes have been created
 	public long GetGraphNodesCount() {

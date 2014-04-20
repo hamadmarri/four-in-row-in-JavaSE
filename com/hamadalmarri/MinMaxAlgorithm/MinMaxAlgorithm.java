@@ -21,16 +21,16 @@ public class MinMaxAlgorithm {
 		PUZZLE_HOLE_COLORS currentColor;
 		short column = 0;
 		short maxDepth;
-		
+
 		long startTime, endTime;
-		
+
 		System.out.print("0: you play first, 1 computer play first: ");
 		player = in.nextShort();
 
 		System.out.print("enter max depth: ");
 		maxDepth = in.nextShort();
 
-		game.SetMaxDepth(maxDepth);
+		game.SetMaxDepth((byte) maxDepth);
 
 		System.out.println(p.toString());
 
@@ -44,9 +44,8 @@ public class MinMaxAlgorithm {
 					column = game.GetNextPlay();
 					endTime = System.currentTimeMillis();
 					System.out.println("computer played: " + column);
-					System.out.println("Created Nodes: "
-							+ game.GetGraphNodesCount());
-					System.out.println("took(" + (float)(endTime - startTime) / 1000 + "s)");
+					System.out.println("Created Nodes: " + game.GetGraphNodesCount());
+					System.out.println("took(" + (float) (endTime - startTime) / 1000 + "s)");
 				} else {
 					currentColor = PLAYERS.PLAYER2;
 					System.out.print("your turn, type a column number: ");
@@ -77,6 +76,8 @@ public class MinMaxAlgorithm {
 
 		System.out.println("");
 	}
+
+
 
 	public static void main(String[] args) throws IOException {
 		StartGame();

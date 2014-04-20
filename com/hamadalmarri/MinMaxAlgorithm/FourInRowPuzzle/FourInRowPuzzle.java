@@ -11,6 +11,8 @@ public class FourInRowPuzzle {
 	private byte numberOfPlays;
 	private PUZZLE_HOLE_COLORS winner;
 
+
+
 	public FourInRowPuzzle() {
 		this.numberOfPlays = 0;
 		this.winner = PUZZLE_HOLE_COLORS.NO_COLOR;
@@ -21,6 +23,8 @@ public class FourInRowPuzzle {
 			}
 		}
 	}
+
+
 
 	public FourInRowPuzzle(FourInRowPuzzle B) {
 		this.holes = new PuzzleHole[6][7];
@@ -37,6 +41,8 @@ public class FourInRowPuzzle {
 		}
 	}
 
+
+
 	public boolean isEmpty() {
 		// check bottom row only
 		for (byte column = 0; column < FourInRowPuzzle.width; column++)
@@ -45,6 +51,8 @@ public class FourInRowPuzzle {
 
 		return true;
 	}
+
+
 
 	public boolean isFull() {
 		// check higher row only
@@ -55,9 +63,13 @@ public class FourInRowPuzzle {
 		return true;
 	}
 
+
+
 	public boolean isColumnFull(byte column) {
 		return (!this.holes[FourInRowPuzzle.hieght - 1][column].isEmpty());
 	}
+
+
 
 	public void addToken(PUZZLE_HOLE_COLORS token, byte column) throws FullColumn {
 		// if column is full, throw error
@@ -78,11 +90,13 @@ public class FourInRowPuzzle {
 
 		// increment number of plays
 		this.numberOfPlays++;
-		
-//		if (this.numberOfPlays > 42) {
-//			System.out.println("this.numberOfPlays > 42");
-//		}
+
+		// if (this.numberOfPlays > 42) {
+		// System.out.println("this.numberOfPlays > 42");
+		// }
 	}
+
+
 
 	void removeToken(byte column) {
 		// to indecate at what level the token should be removed
@@ -98,6 +112,8 @@ public class FourInRowPuzzle {
 		// decrement number of plays
 		this.numberOfPlays--;
 	}
+
+
 
 	public boolean isDone() {
 
@@ -170,9 +186,13 @@ public class FourInRowPuzzle {
 		return false;
 	}
 
+
+
 	public PUZZLE_HOLE_COLORS getWinner() {
 		return this.winner;
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -198,17 +218,25 @@ public class FourInRowPuzzle {
 		return aString.toString();
 	}
 
+
+
 	public static byte getHieght() {
 		return FourInRowPuzzle.hieght;
 	}
+
+
 
 	public static byte getWidth() {
 		return FourInRowPuzzle.width;
 	}
 
+
+
 	public int getNumberOfPlays() {
 		return numberOfPlays;
 	}
+
+
 
 	public void setNumberOfPlays(byte numberOfPlays) {
 		this.numberOfPlays = numberOfPlays;

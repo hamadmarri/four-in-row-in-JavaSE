@@ -19,7 +19,7 @@ public final class GraphNode {
 	public byte tokenPosition = 7;
 
 	// the depth of the graph node
-	public short depth = 0;
+	public byte depth = 0;
 
 	// MinMax Value
 	public short minMaxValue = Short.MIN_VALUE;
@@ -27,8 +27,12 @@ public final class GraphNode {
 	// parent node
 	public GraphNode parent = null;
 
+
+
 	public GraphNode() {
 	}
+
+
 
 	void addEdge(GraphNode child) {
 		this.edges.addLast(child);
