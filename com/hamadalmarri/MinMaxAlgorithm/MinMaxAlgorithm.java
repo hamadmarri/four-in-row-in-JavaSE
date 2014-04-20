@@ -53,7 +53,7 @@ public class MinMaxAlgorithm {
 					column = in.nextShort();
 				}
 
-				p.addToken(currentColor, column);
+				p.addToken(currentColor, (byte) column);
 
 				System.out.println(p.toString());
 

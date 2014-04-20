@@ -8,7 +8,7 @@ public class FourInRowPuzzle {
 	private final static byte hieght = 6;
 	private final static byte width = 7;
 	public PuzzleHole[][] holes;
-	private int numberOfPlays;
+	private byte numberOfPlays;
 	private PUZZLE_HOLE_COLORS winner;
 
 	public FourInRowPuzzle() {
@@ -32,15 +32,14 @@ public class FourInRowPuzzle {
 
 		for (int row = 0; row < FourInRowPuzzle.hieght; row++) {
 			for (int column = 0; column < FourInRowPuzzle.hieght; column++) {
-				this.holes[row][column].setColor(B.holes[row][column]
-						.getColor());
+				this.holes[row][column].setColor(B.holes[row][column].getColor());
 			}
 		}
 	}
 
 	public boolean isEmpty() {
 		// check bottom row only
-		for (short column = 0; column < FourInRowPuzzle.width; column++)
+		for (byte column = 0; column < FourInRowPuzzle.width; column++)
 			if (!this.holes[0][column].isEmpty())
 				return false;
 
@@ -49,19 +48,18 @@ public class FourInRowPuzzle {
 
 	public boolean isFull() {
 		// check higher row only
-		for (short column = 0; column < FourInRowPuzzle.width; column++)
+		for (byte column = 0; column < FourInRowPuzzle.width; column++)
 			if (this.holes[FourInRowPuzzle.hieght - 1][column].isEmpty())
 				return false;
 
 		return true;
 	}
 
-	public boolean isColumnFull(short column) {
+	public boolean isColumnFull(byte column) {
 		return (!this.holes[FourInRowPuzzle.hieght - 1][column].isEmpty());
 	}
 
-	public void addToken(PUZZLE_HOLE_COLORS token, short column)
-			throws FullColumn {
+	public void addToken(PUZZLE_HOLE_COLORS token, byte column) throws FullColumn {
 		// if column is full, throw error
 		if (isColumnFull(column)) {
 			System.out.println(this);
@@ -69,7 +67,7 @@ public class FourInRowPuzzle {
 		}
 
 		// to indecate at what level the token should be added
-		short row = 0;
+		byte row = 0;
 
 		// increment untill find empty hole
 		while (!this.holes[row][column].isEmpty())
@@ -80,11 +78,15 @@ public class FourInRowPuzzle {
 
 		// increment number of plays
 		this.numberOfPlays++;
+		
+//		if (this.numberOfPlays > 42) {
+//			System.out.println("this.numberOfPlays > 42");
+//		}
 	}
 
-	void removeToken(short column) {
+	void removeToken(byte column) {
 		// to indecate at what level the token should be removed
-		short row = (short) (FourInRowPuzzle.hieght - 1);
+		byte row = (byte) (FourInRowPuzzle.hieght - 1);
 
 		// decrement untill find non empty hole
 		while (this.holes[row][column].isEmpty())
@@ -103,8 +105,8 @@ public class FourInRowPuzzle {
 		PUZZLE_HOLE_COLORS currentColor;
 
 		// go through all holes
-		for (short row = 0; row < FourInRowPuzzle.hieght; row++) {
-			for (short column = 0; column < FourInRowPuzzle.width; column++) {
+		for (byte row = 0; row < FourInRowPuzzle.hieght; row++) {
+			for (byte column = 0; column < FourInRowPuzzle.width; column++) {
 
 				// get currentcolor
 				currentColor = this.holes[row][column].getColor();
@@ -177,12 +179,12 @@ public class FourInRowPuzzle {
 		// the string to be returned
 		StringBuilder aString = new StringBuilder("");
 
-		for (short row = (short) (FourInRowPuzzle.hieght - 1); row >= 0; row--) {
+		for (byte row = (byte) (FourInRowPuzzle.hieght - 1); row >= 0; row--) {
 
 			// left boundry
 			aString.append("| ");
 
-			for (short column = 0; column < FourInRowPuzzle.width; column++) {
+			for (byte column = 0; column < FourInRowPuzzle.width; column++) {
 				aString.append(this.holes[row][column].toString()).append(" ");
 			}
 
@@ -200,23 +202,15 @@ public class FourInRowPuzzle {
 		return FourInRowPuzzle.hieght;
 	}
 
-//	public void setHieght(short hieght) {
-//		this.hieght = hieght;
-//	}
-
 	public static byte getWidth() {
 		return FourInRowPuzzle.width;
 	}
-
-//	public void setWidth(short width) {
-//		this.width = width;
-//	}
 
 	public int getNumberOfPlays() {
 		return numberOfPlays;
 	}
 
-	public void setNumberOfPlays(int numberOfPlays) {
+	public void setNumberOfPlays(byte numberOfPlays) {
 		this.numberOfPlays = numberOfPlays;
 	}
 

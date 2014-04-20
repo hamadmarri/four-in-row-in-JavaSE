@@ -16,7 +16,7 @@ public final class GraphNode {
 	public LinkedList<GraphNode> edges = new LinkedList<GraphNode>();
 
 	// graph node data is the token position
-	public short tokenPosition = 7;
+	public byte tokenPosition = 7;
 
 	// the depth of the graph node
 	public short depth = 0;
