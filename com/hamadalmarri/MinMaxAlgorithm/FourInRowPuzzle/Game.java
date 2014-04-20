@@ -241,7 +241,7 @@ public final class Game {
 		GraphNode graphNodeChild;
 
 		// go through all possible next play
-		for (short column = 0; column < aPuzzle.getWidth(); column++) {
+		for (short column = 0; column < FourInRowPuzzle.getWidth(); column++) {
 			// check if column is not full
 			if (!this.aPuzzle.isColumnFull(column)) {
 
@@ -318,8 +318,8 @@ public final class Game {
 		short result = 0;
 
 		// go through all holes
-		for (short row = 0; row < this.aPuzzle.getHieght() - 1; row++) {
-			for (short column = 0; column < this.aPuzzle.getWidth(); column++) {
+		for (short row = 0; row < FourInRowPuzzle.getHieght() - 1; row++) {
+			for (short column = 0; column < FourInRowPuzzle.getWidth(); column++) {
 				// if this is same color token then count for sequential tokens
 				if (this.aPuzzle.holes[row][column].getColor() == color) {
 
@@ -328,7 +328,7 @@ public final class Game {
 						result += 2;
 
 					// check horizontally to right token
-					if (column < this.aPuzzle.getWidth() - 1
+					if (column < FourInRowPuzzle.getWidth() - 1
 							&& this.aPuzzle.holes[row][column + 1].getColor() == color)
 						result += 2;
 
@@ -339,7 +339,7 @@ public final class Game {
 						result += 2;
 
 					// check diagonally Up-Right
-					if (column < this.aPuzzle.getWidth() - 1
+					if (column < FourInRowPuzzle.getWidth() - 1
 							&& this.aPuzzle.holes[row + 1][column + 1]
 									.getColor() == color)
 						result += 2;
@@ -354,7 +354,7 @@ public final class Game {
 		short result = 0;
 
 		// go through all holes in center column
-		for (short row = 0; row < this.aPuzzle.getHieght() - 1; row++) {
+		for (short row = 0; row < FourInRowPuzzle.getHieght() - 1; row++) {
 			if (this.originalPuzzle.holes[row][3].isEmpty()
 					&& this.aPuzzle.holes[row][3].getColor() == PLAYERS.PLAYER1)
 				result += 10;

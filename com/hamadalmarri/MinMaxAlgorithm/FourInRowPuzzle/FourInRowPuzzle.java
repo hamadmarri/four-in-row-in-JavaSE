@@ -5,8 +5,8 @@ package com.hamadalmarri.MinMaxAlgorithm.FourInRowPuzzle;
  * 
  */
 public class FourInRowPuzzle {
-	private final short hieght = 6;
-	private final short width = 7;
+	private final static byte hieght = 6;
+	private final static byte width = 7;
 	public PuzzleHole[][] holes;
 	private int numberOfPlays;
 	private PUZZLE_HOLE_COLORS winner;
@@ -30,8 +30,8 @@ public class FourInRowPuzzle {
 			}
 		}
 
-		for (int row = 0; row < B.hieght; row++) {
-			for (int column = 0; column < B.hieght; column++) {
+		for (int row = 0; row < FourInRowPuzzle.hieght; row++) {
+			for (int column = 0; column < FourInRowPuzzle.hieght; column++) {
 				this.holes[row][column].setColor(B.holes[row][column]
 						.getColor());
 			}
@@ -40,7 +40,7 @@ public class FourInRowPuzzle {
 
 	public boolean isEmpty() {
 		// check bottom row only
-		for (short column = 0; column < this.width; column++)
+		for (short column = 0; column < FourInRowPuzzle.width; column++)
 			if (!this.holes[0][column].isEmpty())
 				return false;
 
@@ -49,15 +49,15 @@ public class FourInRowPuzzle {
 
 	public boolean isFull() {
 		// check higher row only
-		for (short column = 0; column < this.width; column++)
-			if (this.holes[this.hieght - 1][column].isEmpty())
+		for (short column = 0; column < FourInRowPuzzle.width; column++)
+			if (this.holes[FourInRowPuzzle.hieght - 1][column].isEmpty())
 				return false;
 
 		return true;
 	}
 
 	public boolean isColumnFull(short column) {
-		return (!this.holes[this.hieght - 1][column].isEmpty());
+		return (!this.holes[FourInRowPuzzle.hieght - 1][column].isEmpty());
 	}
 
 	public void addToken(PUZZLE_HOLE_COLORS token, short column)
@@ -84,7 +84,7 @@ public class FourInRowPuzzle {
 
 	void removeToken(short column) {
 		// to indecate at what level the token should be removed
-		short row = (short) (this.hieght - 1);
+		short row = (short) (FourInRowPuzzle.hieght - 1);
 
 		// decrement untill find non empty hole
 		while (this.holes[row][column].isEmpty())
@@ -103,8 +103,8 @@ public class FourInRowPuzzle {
 		PUZZLE_HOLE_COLORS currentColor;
 
 		// go through all holes
-		for (short row = 0; row < this.hieght; row++) {
-			for (short column = 0; column < this.width; column++) {
+		for (short row = 0; row < FourInRowPuzzle.hieght; row++) {
+			for (short column = 0; column < FourInRowPuzzle.width; column++) {
 
 				// get currentcolor
 				currentColor = this.holes[row][column].getColor();
@@ -115,7 +115,7 @@ public class FourInRowPuzzle {
 				}
 
 				// check vertically to Upper tokens
-				if (row + 3 < this.hieght) {
+				if (row + 3 < FourInRowPuzzle.hieght) {
 					if (this.holes[row + 1][column].getColor() == currentColor
 							&& this.holes[row + 2][column].getColor() == currentColor
 							&& this.holes[row + 3][column].getColor() == currentColor) {
@@ -127,7 +127,7 @@ public class FourInRowPuzzle {
 				}
 
 				// check horizontally to right tokens
-				if (column + 3 < this.width) {
+				if (column + 3 < FourInRowPuzzle.width) {
 					if (this.holes[row][column + 1].getColor() == currentColor
 							&& this.holes[row][column + 2].getColor() == currentColor
 							&& this.holes[row][column + 3].getColor() == currentColor) {
@@ -139,7 +139,7 @@ public class FourInRowPuzzle {
 				}
 
 				// check diagonally Up-Left
-				if (row + 3 < this.hieght && column - 3 >= 0) {
+				if (row + 3 < FourInRowPuzzle.hieght && column - 3 >= 0) {
 					if (this.holes[row + 1][column - 1].getColor() == currentColor
 							&& this.holes[row + 2][column - 2].getColor() == currentColor
 							&& this.holes[row + 3][column - 3].getColor() == currentColor) {
@@ -151,7 +151,7 @@ public class FourInRowPuzzle {
 				}
 
 				// check diagonally Up-Right
-				if (row + 3 < this.hieght && column + 3 < this.width) {
+				if (row + 3 < FourInRowPuzzle.hieght && column + 3 < FourInRowPuzzle.width) {
 					if (this.holes[row + 1][column + 1].getColor() == currentColor
 							&& this.holes[row + 2][column + 2].getColor() == currentColor
 							&& this.holes[row + 3][column + 3].getColor() == currentColor) {
@@ -177,12 +177,12 @@ public class FourInRowPuzzle {
 		// the string to be returned
 		StringBuilder aString = new StringBuilder("");
 
-		for (short row = (short) (this.hieght - 1); row >= 0; row--) {
+		for (short row = (short) (FourInRowPuzzle.hieght - 1); row >= 0; row--) {
 
 			// left boundry
 			aString.append("| ");
 
-			for (short column = 0; column < this.width; column++) {
+			for (short column = 0; column < FourInRowPuzzle.width; column++) {
 				aString.append(this.holes[row][column].toString()).append(" ");
 			}
 
@@ -196,16 +196,16 @@ public class FourInRowPuzzle {
 		return aString.toString();
 	}
 
-	public short getHieght() {
-		return hieght;
+	public static byte getHieght() {
+		return FourInRowPuzzle.hieght;
 	}
 
 //	public void setHieght(short hieght) {
 //		this.hieght = hieght;
 //	}
 
-	public short getWidth() {
-		return width;
+	public static byte getWidth() {
+		return FourInRowPuzzle.width;
 	}
 
 //	public void setWidth(short width) {
