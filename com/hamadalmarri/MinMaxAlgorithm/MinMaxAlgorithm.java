@@ -16,7 +16,7 @@ public class MinMaxAlgorithm {
 		Game game = new Game();
 		Scanner in = new Scanner(System.in);
 
-		short player = 0;
+		boolean player = false;
 
 		PUZZLE_HOLE_COLORS currentColor;
 		short column = 0;
@@ -25,7 +25,7 @@ public class MinMaxAlgorithm {
 		long startTime, endTime;
 
 		System.out.print("0: you play first, 1 computer play first: ");
-		player = in.nextShort();
+		player = (in.nextByte() != 0);
 
 		System.out.print("enter max depth: ");
 		maxDepth = in.nextShort();
@@ -36,7 +36,7 @@ public class MinMaxAlgorithm {
 
 		while (!p.isFull() && !p.isDone()) {
 			try {
-				if (player == 1) {
+				if (player) {
 					currentColor = PLAYERS.PLAYER1;
 					game.SetPuzzle(p);
 					System.out.println("computer is thinking ...");
@@ -56,7 +56,7 @@ public class MinMaxAlgorithm {
 
 				System.out.println(p.toString());
 
-				player = (short) (player == 0 ? 1 : 0);
+				player = !player;
 
 			} catch (FullColumn e) {
 				System.out.println("column is full!");
