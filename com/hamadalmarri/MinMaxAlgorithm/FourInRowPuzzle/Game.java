@@ -133,7 +133,7 @@ public final class Game {
 			}
 
 			// else if it has children and Depth is even, get Max child value
-			else if (!this.aGraphNode.edges.isEmpty() && (this.aGraphNode.depth % 2) == 0) {
+			else if (!this.aGraphNode.edges.isEmpty() && (this.aGraphNode.depth & 0x01) == 0) {
 
 				// get Max child value
 				this.aGraphNode.minMaxValue = GetMaxChildValue(this.aGraphNode);
@@ -142,7 +142,7 @@ public final class Game {
 			}
 
 			// else if it has children and Depth is odd, get Min child value
-			else if (!this.aGraphNode.edges.isEmpty() && (this.aGraphNode.depth % 2) == 1) {
+			else if (!this.aGraphNode.edges.isEmpty() && (this.aGraphNode.depth & 0x01) == 1) {
 
 				// get Min child value
 				this.aGraphNode.minMaxValue = GetMinChildValue(this.aGraphNode);
@@ -169,7 +169,7 @@ public final class Game {
 		// check if valid play has been played
 		if (this.aGraphNode.tokenPosition < 7) {
 			// check if player1 has been played
-			if ((this.aGraphNode.depth % 2) == 1)
+			if ((this.aGraphNode.depth & 0x01) == 1)
 				this.aPuzzle.addToken(PLAYERS.PLAYER1, this.aGraphNode.tokenPosition);
 			// or player2
 			else
@@ -218,7 +218,7 @@ public final class Game {
 		}
 
 		// check if the graph node in max level
-		if ((this.aGraphNode.depth % 2) == 0) {
+		if ((this.aGraphNode.depth & 0x01) == 0) {
 			// get min of brothers
 			min = GetMinChildValue(this.aGraphNode.parent);
 
@@ -226,7 +226,7 @@ public final class Game {
 			max = GetMaxChildValue(this.aGraphNode.parent.parent);
 		}
 		// else if it is in min level
-		else if ((this.aGraphNode.depth % 2) == 1) {
+		else if ((this.aGraphNode.depth & 0x01) == 1) {
 			// get max of brothers
 			max = GetMaxChildValue(this.aGraphNode.parent);
 
