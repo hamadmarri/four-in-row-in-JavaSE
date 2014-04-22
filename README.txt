@@ -11,9 +11,9 @@ choosing depth to be 7 is the best in terms of memory performance.
 
 
 
-/////////////////////
+///////////////////////
 program running
-/////////////////////
+///////////////////////
 
 
 0: you play first, 1 computer play first: 1
