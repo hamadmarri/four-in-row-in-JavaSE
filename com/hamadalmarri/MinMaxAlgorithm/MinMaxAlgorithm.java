@@ -9,6 +9,11 @@ import com.hamadalmarri.MinMaxAlgorithm.FourInRowPuzzle.Game;
 import com.hamadalmarri.MinMaxAlgorithm.FourInRowPuzzle.PUZZLE_HOLE_COLORS;
 import com.hamadalmarri.MinMaxAlgorithm.FourInRowPuzzle.PLAYERS;
 
+
+/**
+ * @author Hamad Almarri <hamad.s.almarri@gmail.com>
+ *
+ */
 public class MinMaxAlgorithm {
 
 	private static void StartGame() throws IOException {

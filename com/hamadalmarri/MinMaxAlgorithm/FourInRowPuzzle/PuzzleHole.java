@@ -1,7 +1,7 @@
 package com.hamadalmarri.MinMaxAlgorithm.FourInRowPuzzle;
 
 /**
- * @author hamadalmarri
+ * @author Hamad Almarri <hamad.s.almarri@gmail.com>
  * 
  */
 public class PuzzleHole {
