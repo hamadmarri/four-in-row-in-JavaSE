@@ -13,7 +13,7 @@ class SPECIAL_VALUES {
 }
 
 /**
- * @author hamadalmarri
+ * @author Hamad Almarri <hamad.s.almarri@gmail.com>
  * 
  */
 public final class Game {

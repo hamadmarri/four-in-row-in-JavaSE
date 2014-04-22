@@ -7,9 +7,10 @@ package com.hamadalmarri.MinMaxAlgorithm.Graph;
 
 import java.util.LinkedList;
 
+
 /**
- * 
- * @author hamadalmarri
+ * @author Hamad Almarri <hamad.s.almarri@gmail.com>
+ *
  */
 public final class Graph {
 
